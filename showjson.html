@@ -1,10 +1,40 @@
+<!DOCTYPE html>
 <html>
 
 <head>
     <title></title>
+    <script type="application/javascript">
+        function loadJSON() {
+            var txt, x, i;
+            var http_request = new XMLHttpRequest();
+            http_request.onreadystatechange = function() {
+                if (http_request.readyState == 4 && http_request.status == 200) {
+                    // Javascript function JSON.parse to parse JSON data_file
+                }
+                var html = "";
+                var obj = JSON.parse(xmlhttp.responseText);
+                //alert(obj.books.length);
+                for (i = 0; i < obj.books.length; i++) {
+                    html += obj.books[i].book.title + "<br>";
+                    html += obj.books[i].book.publisher + "<br>"
+                    html
+                    html += "<img src='" + obj.books[i].book.cover + "' height='100'><hr>";
+                }
+                document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+            }
+            http_request.open("GET", "data.json", true);
+            http_request.send();
+        }
+    </script>
 </head>
 
 <body>
+    <div id="myDiv">
+        <h2>Let AJAX change this text</h2>
+    </div>
+    <button onclick="loadJSON()">
+        Update
+    </button>
 </body>
 
 </html>
