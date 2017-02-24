@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<!-- saved from url=(0064)http://angsila.cs.buu.ac.th/~58160038/887371/lab06/showjson.html -->
 <html>
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>Show JSON</title>
     <script>
-        var txt, x;
         var http_request = new XMLHttpRequest();
         http_request.onreadystatechange = function() {
             if (http_request.readyState == 4 && http_request.status == 200) {
@@ -12,10 +13,12 @@
 
                 var jsonObj = JSON.parse(http_request.responseText);
                 var books = jsonObj.books;
+                var txt = "",
+                    x = "";
 
                 for (i = 0; i < books.length; i++) {
                     x = books[i];
-                    txt = txt + x.book.title + "<br><br>";
+                    txt = txt + "<P><B>" + x.book.title + "</B></P><br>";
                     txt = txt + x.book.publisher + "<br><br>";
                     txt = txt + x.book.author + "<br><br>";
                     txt = txt + "<img src=" + x.book.cover + " height='256'>" + "<br><br>";
@@ -24,12 +27,11 @@
                 document.getElementById('disp').innerHTML = txt;
             }
         }
-        http_request.open("GET", 'data.json', true);
+        http_request.open("GET", "http://angsila.cs.buu.ac.th/~wittawas/592/887371/labs/get_json.php", true);
         http_request.send();
     </script>
 </head>
 
-<body id="disp">
-</body>
+<body id="disp"></body>
 
 </html>
